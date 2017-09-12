@@ -32,7 +32,7 @@ describe('User Routes', function(done) {
 				countryOfResidence: 'United States',
 				city: 'San Francisco',
 				postcode: 'ABC123',
-				state: 'California',
+				stateName: 'California',
 				emergencyContact: 'Richard Hendricks',
 				medicalCondition: 'High Cholestrol',
 				dateOfBirth: new Date(1957, 1, 1),

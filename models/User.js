@@ -17,7 +17,7 @@ const UserSchema = new Schema({
 	countryOfResidence: String,
 	city: String,
 	postcode: String,
-	state: String,
+	stateName: String,
 	registrations: [
 		{
 			type: Schema.Types.ObjectId,
@@ -39,7 +39,7 @@ const UserSchema = new Schema({
 		line2: String,
 		line3: String,
 		city: String,
-		state: String,
+		stateName: String,
 		postcode: String,
 		country: String
 	},

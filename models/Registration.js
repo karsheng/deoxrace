@@ -111,9 +111,9 @@ module.exports = Registration;
 function _determinePostalCharges(postalAddress, racePostalCharges) {
 	if (postalAddress.country.toLowerCase() === 'malaysia') {
 		if (
-			postalAddress.state.toLowerCase() === 'sabah' ||
-			postalAddress.state.toLowerCase() === 'sarawak' ||
-			postalAddress.state.toLowerCase() === 'labuan'
+			postalAddress.stateName.toLowerCase() === 'sabah' ||
+			postalAddress.stateName.toLowerCase() === 'sarawak' ||
+			postalAddress.stateName.toLowerCase() === 'labuan'
 		) {
 			return racePostalCharges.eastMalaysia;
 		} else {

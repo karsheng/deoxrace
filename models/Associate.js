@@ -10,6 +10,7 @@ const AssociateSchema = new Schema({
 	address3: String,
 	city: String,
 	postcode: String,
+	stateName: String,
 	country: String,
 	description: String
 });

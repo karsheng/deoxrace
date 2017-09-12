@@ -10,7 +10,7 @@ module.exports = {
 		phone: '1234567890',
 		postcode: '45720',
 		city: 'San Francisco',
-		state: 'California',
+		stateName: 'California',
 		emergencyContact: {
 			name: 'Richard Hendricks',
 			relationship: 'friend',
@@ -28,7 +28,7 @@ module.exports = {
 			line2: 'Silicon Valley',
 			line3: 'Palo Alto',
 			city: 'San Francisco',
-			state: 'California',
+			stateName: 'California',
 			postcode: '12345',
 			country: 'United States'
 		}

@@ -12,7 +12,7 @@ const ParticipantSchema = new Schema({
     phone: String,
     postcode: String,
     city: String,
-    state: String,
+    stateName: String,
     emergencyContact: {
         name: String,
         relationship: String,
@@ -33,7 +33,7 @@ const ParticipantSchema = new Schema({
         line2: String,
         line3: String,
         city: String,
-        state: String,
+        stateName: String,
         postcode: String,
         country: String
     },
