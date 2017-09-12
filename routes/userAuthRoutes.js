@@ -1,8 +1,4 @@
 const mongoose = require('mongoose');
-const passportService = require('../services/passport');
-const passport = require('passport');
-const requireAuth = passport.authenticate('user-jwt', { session: false });
-const requireSignin = passport.authenticate('user-local', { session: false });
 const jwt = require('jwt-simple');
 const config = require('../config/keys');
 const User = mongoose.model('user');
@@ -12,7 +8,7 @@ const tokenForUser = user => {
 	return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
 };
 
-module.exports = app => {
+module.exports = (app, requireSignin) => {
 	app.post('/api/signin', requireSignin, (req, res) => {
 		res.send({ token: tokenForUser(req.user) });
 	});

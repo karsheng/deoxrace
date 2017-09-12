@@ -4,7 +4,7 @@ const app = require('../app');
 const mongoose = require('mongoose');
 const User = mongoose.model('user');
 
-describe('User Auth Controller', function(done) {
+describe('User Auth Test', function(done) {
 	this.timeout(15000);
 
 	it('POST to /api/signup creates a user', done => {

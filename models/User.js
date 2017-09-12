@@ -7,7 +7,6 @@ const MAX_LOGIN_ATTEMPTS = 5;
 const LOCK_TIME = 2 * 60 * 60 * 1000;
 
 const UserSchema = new Schema({
-	name: String,
 	fullName: String,
 	email: { type: String, unique: true, lowercase: true },
 	password: String,
@@ -35,10 +34,6 @@ const UserSchema = new Schema({
 		description: String
 	},
 	dateOfBirth: Date,
-	isAdmin: {
-		type: Boolean,
-		default: false
-	},
 	postalAddress: {
 		line1: String,
 		line2: String,
