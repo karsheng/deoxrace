@@ -4,7 +4,7 @@ module.exports = {
 		identityNumber: '1234567',
 		nationality: 'U.S.',
 		countryOfResidence: 'U.S.',
-		gender: true,
+		gender: 'male',
 		dateOfBirth: new Date(1988, 1, 2),
 		email: 'gavin@hooli.com',
 		phone: '1234567890',

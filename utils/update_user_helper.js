@@ -14,7 +14,6 @@ module.exports = (
 	stateName,
 	emergencyContact,
 	medicalCondition,
-	interests,
 	dateOfBirth,
 	postalAddress
 ) => {
@@ -34,7 +33,6 @@ module.exports = (
 				stateName,
 				emergencyContact,
 				medicalCondition,
-				interests,
 				dateOfBirth,
 				postalAddress
 			})
