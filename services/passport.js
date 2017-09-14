@@ -1,5 +1,6 @@
 const passport = require('passport');
 const User = require('../models/User');
+const Admin = require('../models/Admin');
 const config = require('../config/keys');
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
@@ -66,11 +67,12 @@ const adminLocalLogin = new LocalStrategy(adminLocalOptions, function(
 	password,
 	done
 ) {
-	User.getAuthenticated(email, password, function(err, user, reason) {
+	Admin.getAuthenticated(email, password, function(err, admin, reason) {
 		if (err) return done(err);
-		if (user && user.isAdmin) return done(null, user);
 
-		const reasons = User.failedLogin;
+		if (admin) return done(null, admin);
+
+		const reasons = Admin.failedLogin;
 
 		switch (reason) {
 			case reasons.NOT_FOUND:
@@ -80,7 +82,7 @@ const adminLocalLogin = new LocalStrategy(adminLocalOptions, function(
 				done(null, false);
 				break;
 			case reasons.MAX_ATTEMPTS:
-				// TODO: send email to users to notify them about locked account
+				// TODO: send email to admin to notify them about locked account
 				done(null, false);
 				break;
 		}
@@ -95,13 +97,12 @@ const adminJwtOptions = {
 
 // Create JWT strategy
 const adminJwtLogin = new JwtStrategy(adminJwtOptions, function(payload, done) {
-	User.findById(payload.sub, function(err, user) {
+	Admin.findById(payload.sub, function(err, admin) {
 		if (err) {
 			return done(err, false);
 		}
-
-		if (user && user.isAdmin) {
-			done(null, user);
+		if (admin) {
+			done(null, admin);
 		} else {
 			done(null, false);
 		}

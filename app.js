@@ -10,6 +10,10 @@ const passportService = require('./services/passport');
 const passport = require('passport');
 const requireAuth = passport.authenticate('user-jwt', { session: false });
 const requireSignin = passport.authenticate('user-local', { session: false });
+const requireAdminAuth = passport.authenticate('admin-jwt', { session: false });
+const requireAdminSignin = passport.authenticate('admin-local', {
+	session: false
+});
 
 mongoose.Promise = global.Promise;
 
@@ -25,6 +29,7 @@ app.use(cors());
 app.use(compress());
 require('./routes/userAuthRoutes')(app, requireSignin);
 require('./routes/userRoutes')(app, requireAuth);
+require('./routes/adminAuthRoutes')(app, requireAdminSignin);
 
 app.use((err, req, res, next) => {
 	res.status(422).send({ error: err.message });
