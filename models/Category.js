@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Registration = mongoose.model('registration');
+const Registration = require('./Registration');
 
 const CategorySchema = new Schema({
 	name: String,

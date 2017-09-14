@@ -30,6 +30,7 @@ app.use(compress());
 require('./routes/userAuthRoutes')(app, requireSignin);
 require('./routes/userRoutes')(app, requireAuth);
 require('./routes/adminAuthRoutes')(app, requireAdminSignin);
+require('./routes/adminRoutes')(app, requireAdminAuth);
 
 app.use((err, req, res, next) => {
 	res.status(422).send({ error: err.message });

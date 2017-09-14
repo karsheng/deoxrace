@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const CollectionSchema = require('./collection_schema');
-const OrganizerSchema = require('./organizer_schema');
-const ApparelSchema = require('./apparel_schema');
-const DeliverySchema = require('./delivery_schema');
+const CollectionSchema = require('./CollectionSchema');
+const OrganizerSchema = require('./OrganizerSchema');
+const ApparelSchema = require('./ApparelSchema');
+const DeliverySchema = require('./DeliverySchema');
+const Category = require('./Category');
 
 const RaceSchema = new Schema({
 	name: String,
@@ -25,7 +26,7 @@ const RaceSchema = new Schema({
 			ref: 'meal'
 		}
 	],
-	open: Boolean
+	open: Boolean,
 	collectionInfo: [CollectionSchema],
 	resultUrl: String,
 	types: [String],
@@ -39,7 +40,6 @@ const RaceSchema = new Schema({
 
 RaceSchema.pre('save', function(next) {
 	const race = this;
-	
 	_getRaceTypes(race, function(err, types) {
 		if (err) {
 			return next(err);
@@ -50,25 +50,19 @@ RaceSchema.pre('save', function(next) {
 });
 
 async function _getRaceTypes(race, cb) {
-	const Category = mongoose.model('category');
 	let types = [];
-
 	try {
 		const result = await Category.populate(race, { path: 'categories' });
-		
+
 		result.categories.map(cat => {
 			if (types.indexOf(cat.type) === -1) {
 				types.push(cat.type);
 			}
-
-		return cb(null, types);
-
 		});
-
-	} catch(err) {
+		return cb(null, types);
+	} catch (err) {
 		next(err);
 	}
-
 }
 
 const Race = mongoose.model('race', RaceSchema);

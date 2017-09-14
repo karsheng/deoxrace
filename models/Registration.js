@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const OrderSchema = require('./OrderSchema');
-const Race = mongoose.model('race');
-const Category = mongoose.model('category');
-const Meal = mongoose.model('meal');
-const Participant = mongoose.model('participant');
+const Race = require('./Race');
+const Category = require('./Category');
+const Meal = require('./Meal');
+const Participant = require('./Participant');
 
 const RegistrationSchema = new Schema(
 	{

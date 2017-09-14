@@ -1,4 +1,8 @@
 module.exports = {
+	admin: {
+		email: 'admin@deoxrace.com',
+		password: 'qwerty123'
+	},
 	participant: {
 		fullName: 'Gavin Belson',
 		identityNumber: '1234567',
