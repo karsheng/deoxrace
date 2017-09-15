@@ -3,11 +3,7 @@ const app = require('../app');
 
 module.exports = (
 	token,
-	race_id,
-	category,
-	orders,
-	participant,
-	registerForSelf
+	{ race_id, category, orders, participant, registerForSelf }
 ) => {
 	return new Promise((resolve, reject) => {
 		request(app)

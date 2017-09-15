@@ -3,6 +3,36 @@ module.exports = {
 		email: 'admin@deoxrace.com',
 		password: 'qwerty123'
 	},
+	user: {
+		fullName: 'Richard Hendricks',
+		email: 'richard@piedpiper.com',
+		password: 'qwerty123',
+		phone: '12345678',
+		gender: 'male',
+		identityNumber: '123456789',
+		nationality: 'U.S.',
+		countryOfResidence: 'U.S.',
+		city: 'San Francisco',
+		postcode: '12345',
+		stateName: 'California',
+		emergencyContact: {
+			name: 'Jared Dunn',
+			relationship: 'partner',
+			phone: '12345678'
+		},
+		hasMedicalCondition: true,
+		medicalConditionDescription: 'Shrinking',
+		dateOfBirth: new Date(1988, 1, 1),
+		postalAddress: {
+			line1: '123 Nueull Road',
+			line2: 'Palo Alto',
+			line3: null,
+			city: 'San Francisco',
+			stateName: 'California',
+			postcode: '12345',
+			country: 'U.S.'
+		}
+	},
 	participant: {
 		fullName: 'Gavin Belson',
 		identityNumber: '1234567',

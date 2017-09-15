@@ -8,6 +8,8 @@ const data = require('../utils/test_data');
 const signinUser = require('../utils/user_signin_helper');
 const {
 	fullName,
+	email,
+	password,
 	phone,
 	gender,
 	identityNumber,
@@ -17,19 +19,19 @@ const {
 	postcode,
 	stateName,
 	emergencyContact,
-	medicalCondition,
+	hasMedicalCondition,
+	medicalConditionDescription,
 	dateOfBirth,
 	postalAddress
-} = data.participant;
+} = data.user;
 
 describe('User Routes', function(done) {
 	this.timeout(15000);
 	var token;
 
 	beforeEach(async () => {
-		token = await createUser('gavin@hooli.com', 'qwerty123');
-		await updateUser(
-			token,
+		token = await createUser({ email, password });
+		await updateUser(token, {
 			fullName,
 			phone,
 			gender,
@@ -40,10 +42,11 @@ describe('User Routes', function(done) {
 			postcode,
 			stateName,
 			emergencyContact,
-			medicalCondition,
+			hasMedicalCondition,
+			medicalConditionDescription,
 			dateOfBirth,
 			postalAddress
-		);
+		});
 	});
 
 	it('PUT to /api/user/profile updates the profile of the user', done => {
@@ -52,28 +55,33 @@ describe('User Routes', function(done) {
 			.set('authorization', token)
 			.send({
 				fullName: 'Gavin Belson',
+				phone: '1234567',
 				gender: 'male',
 				identityNumber: 'A12345',
-				nationality: 'United States',
-				countryOfResidence: 'United States',
-				city: 'San Francisco',
-				postcode: 'ABC123',
-				stateName: 'California',
-				emergencyContact: 'Richard Hendricks',
-				medicalCondition: 'High Cholestrol',
+				nationality: 'Malaysia',
+				countryOfResidence: 'Malaysia',
+				city: 'Kuala Lumpur',
+				postcode: '54321',
+				stateName: 'Kuala Lumpur',
+				emergencyContact: {
+					name: 'Jared Dunn',
+					relationship: 'friend',
+					phone: '1234567'
+				},
+				hasMedicalCondition: true,
+				medicalConditionDescription: 'high cholesterol',
 				dateOfBirth: new Date(1957, 1, 1),
 				postalAddress: null
 			})
-			.end((err, res) => {
+			.end(async (err, res) => {
 				const User = mongoose.model('user');
-				User.findOne({ email: 'gavin@hooli.com' }).then(user => {
-					assert(res.body.password === undefined);
-					assert(user.fullName === 'Gavin Belson');
-					assert(user.gender === 'male');
-					assert(user.city === 'San Francisco');
-					assert(user.postcode === 'ABC123');
-					done();
-				});
+				const user = await User.findOne({ email });
+				assert(res.body.password === undefined);
+				assert(user.fullName === 'Gavin Belson');
+				assert(user.gender === 'male');
+				assert(user.city === 'Kuala Lumpur');
+				assert(user.emergencyContact.name === 'Jared Dunn');
+				done();
 			});
 	});
 
@@ -85,19 +93,20 @@ describe('User Routes', function(done) {
 				assert(res.body.fullName === fullName);
 				assert(res.body.phone === phone);
 				assert(res.body.postcode === postcode);
+				assert(res.body.hasMedicalCondition === hasMedicalCondition);
 				done();
 			});
 	});
 
 	it('Failed login more than five times locks the account for two hours', async () => {
-		var res = await signinUser('gavin@hooli.com', 'qwerty123');
+		var res = await signinUser({ email, password });
 		assert(res.body.token);
-		await signinUser('gavin@hooli.com', 'wrongpassword');
-		await signinUser('gavin@hooli.com', 'wrongpassword');
-		await signinUser('gavin@hooli.com', 'wrongpassword');
-		await signinUser('gavin@hooli.com', 'wrongpassword');
-		await signinUser('gavin@hooli.com', 'wrongpassword');
-		res = await signinUser('gavin@hooli.com', 'qwerty123');
+		await signinUser({ email, password: 'wrongpassword' });
+		await signinUser({ email, password: 'wrongpassword' });
+		await signinUser({ email, password: 'wrongpassword' });
+		await signinUser({ email, password: 'wrongpassword' });
+		await signinUser({ email, password: 'wrongpassword' });
+		res = await signinUser({ email, password });
 		assert(res.body.token === undefined);
 	});
 });

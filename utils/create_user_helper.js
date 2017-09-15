@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require('../app');
 
-module.exports = (email, password) => {
+module.exports = ({ email, password }) => {
 	return new Promise((resolve, reject) => {
 		request(app)
 			.post('/api/signup')

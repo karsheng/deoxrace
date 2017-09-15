@@ -3,17 +3,19 @@ const app = require('../app');
 
 module.exports = (
 	token,
-	name,
-	logo,
-	imageUrl,
-	address1,
-	address2,
-	address3,
-	city,
-	stateName,
-	postcode,
-	country,
-	description
+	{
+		name,
+		logo,
+		imageUrl,
+		address1,
+		address2,
+		address3,
+		city,
+		stateName,
+		postcode,
+		country,
+		description
+	}
 ) => {
 	return new Promise((resolve, reject) => {
 		request(app)

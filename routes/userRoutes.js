@@ -27,7 +27,8 @@ module.exports = (app, requireAuth) => {
 			postcode,
 			stateName,
 			emergencyContact,
-			medicalCondition,
+			hasMedicalCondition,
+			medicalConditionDescription,
 			interests,
 			dateOfBirth,
 			postalAddress
@@ -47,14 +48,14 @@ module.exports = (app, requireAuth) => {
 					postcode,
 					stateName,
 					emergencyContact,
-					medicalCondition,
+					hasMedicalCondition,
+					medicalConditionDescription,
 					interests,
 					dateOfBirth,
 					postalAddress
 				},
 				{ new: true }
 			).select('-password -loginAttempts');
-
 			res.json(user);
 		} catch (err) {
 			next(err);

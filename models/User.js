@@ -29,10 +29,8 @@ const UserSchema = new Schema({
 		relationship: String,
 		phone: String
 	},
-	medicalCondition: {
-		hasMedicalCondition: Boolean,
-		description: String
-	},
+	hasMedicalCondition: Boolean,
+	medicalConditionDescription: String,
 	dateOfBirth: Date,
 	postalAddress: {
 		line1: String,

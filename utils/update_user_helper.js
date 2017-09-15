@@ -3,19 +3,22 @@ const app = require('../app');
 
 module.exports = (
 	token,
-	fullName,
-	phone,
-	gender,
-	identityNumber,
-	nationality,
-	countryOfResidence,
-	city,
-	postcode,
-	stateName,
-	emergencyContact,
-	medicalCondition,
-	dateOfBirth,
-	postalAddress
+	{
+		fullName,
+		phone,
+		gender,
+		identityNumber,
+		nationality,
+		countryOfResidence,
+		city,
+		postcode,
+		stateName,
+		emergencyContact,
+		hasMedicalCondition,
+		medicalConditionDescription,
+		dateOfBirth,
+		postalAddress
+	}
 ) => {
 	return new Promise((resolve, reject) => {
 		request(app)
@@ -32,7 +35,8 @@ module.exports = (
 				postcode,
 				stateName,
 				emergencyContact,
-				medicalCondition,
+				hasMedicalCondition,
+				medicalConditionDescription,
 				dateOfBirth,
 				postalAddress
 			})

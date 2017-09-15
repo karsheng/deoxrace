@@ -11,8 +11,7 @@ describe('Admin Routes', function(done) {
 	var adminToken;
 
 	beforeEach(async () => {
-		const { email, password } = data.admin;
-		adminToken = await createAdmin(email, password);
+		adminToken = await createAdmin(data.admin);
 	});
 
 	it('POST to /api/admin/race/create creates a new race', done => {

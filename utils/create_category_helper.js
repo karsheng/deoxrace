@@ -3,16 +3,18 @@ const app = require('../app');
 
 module.exports = (
 	token,
-	name,
-	price,
-	gender,
-	ageMin,
-	ageMax,
-	participantLimit,
-	race,
-	prize,
-	type,
-	distance
+	{
+		name,
+		price,
+		gender,
+		ageMin,
+		ageMax,
+		participantLimit,
+		race,
+		prize,
+		type,
+		distance
+	}
 ) => {
 	return new Promise((resolve, reject) => {
 		request(app)
