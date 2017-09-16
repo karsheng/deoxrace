@@ -33,6 +33,63 @@ module.exports = {
 			country: 'U.S.'
 		}
 	},
+	race: {
+		name: 'Race 1',
+		datetime: new Date(2018, 3, 3),
+		address: 'Race Avenue',
+		lat: 3,
+		lng: 101,
+		description: 'Race description',
+		imageUrl: 'http://via.placeholder.com/350x150',
+		open: true,
+		types: 'run',
+		resultUrl: 'www.example.com',
+		stateName: 'Kuala Lumpur',
+		earlyBirdDealine: new Date(2018, 1, 1),
+		registrationDeadline: new Date(2018, 2, 2)
+	},
+	categories: {
+		one: {
+			name: 'Male 10k Run 18-30 yo',
+			price: {
+				earlyBird: 5000,
+				normal: 6000
+			},
+			gender: 'male',
+			ageMin: 18,
+			ageMax: 30,
+			prize: String,
+			type: 'run',
+			distance: 10
+		},
+		two: {
+			name: 'Female 10k Run 18-30 yo',
+			price: {
+				earlyBird: 5000,
+				normal: 6000
+			},
+			gender: 'female',
+			ageMin: 18,
+			ageMax: 30,
+			prize: String,
+			type: 'run',
+			distance: 10
+		}
+	},
+	meals: {
+		one: {
+			name: 'Meal 1',
+			price: 900,
+			description: 'Meal 1 description',
+			imageUrl: 'http://via.placeholder.com/350x150'
+		},
+		two: {
+			name: 'Meal 2',
+			price: 1090,
+			description: 'Meal 1 description',
+			imageUrl: 'http://via.placeholder.com/350x150'
+		}
+	},
 	participant: {
 		fullName: 'Gavin Belson',
 		identityNumber: '1234567',
@@ -94,5 +151,14 @@ module.exports = {
 			westMalaysia: 6,
 			international: 50
 		}
-	}
+	},
+	collection: [
+		{
+			address: 'Collection venue 1',
+			time: '1000 to 1700',
+			description: 'Collection description',
+			lat: 3,
+			lng: 101
+		}
+	]
 };

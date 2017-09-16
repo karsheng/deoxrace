@@ -3,6 +3,7 @@ const app = require('../app');
 
 module.exports = (
 	token,
+	race_id,
 	{
 		name,
 		price,
@@ -10,7 +11,6 @@ module.exports = (
 		ageMin,
 		ageMax,
 		participantLimit,
-		race,
 		prize,
 		type,
 		distance
@@ -18,7 +18,7 @@ module.exports = (
 ) => {
 	return new Promise((resolve, reject) => {
 		request(app)
-			.post('/api/admin/category')
+			.post(`/api/admin/category/create/${race_id}`)
 			.set('admin-authorization', token)
 			.send({
 				name,
@@ -27,7 +27,6 @@ module.exports = (
 				ageMin,
 				ageMax,
 				participantLimit,
-				race,
 				prize,
 				type,
 				distance

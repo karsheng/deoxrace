@@ -8,7 +8,7 @@ const CategorySchema = new Schema({
 		earlyBird: { type: Number, default: null },
 		normal: Number
 	},
-	gender: Boolean,
+	gender: String,
 	ageMin: Number,
 	ageMax: Number,
 	participantLimit: Number,
