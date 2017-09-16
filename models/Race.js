@@ -31,15 +31,18 @@ const RaceSchema = new Schema({
 	resultUrl: String,
 	types: [String],
 	stateName: String,
-	earlyBirdDealine: Date,
+	earlyBirdDeadline: Date,
 	registrationDeadline: Date,
 	organizer: [OrganizerSchema],
 	apparel: ApparelSchema,
 	delivery: DeliverySchema
 });
 
-RaceSchema.pre('save', function(next) {
+RaceSchema.pre('save', async function(next) {
 	const race = this;
+
+	race.categories = await Category.find({ race: race._id });
+
 	_getRaceTypes(race, function(err, types) {
 		if (err) {
 			return next(err);

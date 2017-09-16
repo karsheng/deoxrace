@@ -4,7 +4,7 @@ const app = require('../app');
 module.exports = (token, { name, price, description, imageUrl }) => {
 	return new Promise((resolve, reject) => {
 		request(app)
-			.post('/api/admin/meal')
+			.post('/api/admin/meal/create')
 			.set('admin-authorization', token)
 			.send({
 				name,

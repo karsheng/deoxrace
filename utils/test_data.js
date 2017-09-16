@@ -45,7 +45,7 @@ module.exports = {
 		types: 'run',
 		resultUrl: 'www.example.com',
 		stateName: 'Kuala Lumpur',
-		earlyBirdDealine: new Date(2018, 1, 1),
+		earlyBirdDeadline: new Date(2018, 1, 1),
 		registrationDeadline: new Date(2018, 2, 2)
 	},
 	categories: {
