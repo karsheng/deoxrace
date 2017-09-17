@@ -26,6 +26,7 @@ module.exports = (app, requireAuth) => {
 							unpaidReg.category = category_id;
 							unpaidReg.orders = orders;
 							unpaidReg.race = race_id;
+							unpaidReg.registerForSelf = registerForSelf;
 
 							const updatedParticipant = await Participant.findByIdAndUpdate(
 								unpaidReg.participant,
