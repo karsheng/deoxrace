@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const User = require('../models/User');
+const User = mongoose.model('user');
 
 module.exports = (app, requireAuth) => {
 	app.get('/api/user/profile', requireAuth, async (req, res, next) => {

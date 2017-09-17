@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const OrderSchema = require('./OrderSchema');
-const Race = require('./Race');
-const Category = require('./Category');
-const Meal = require('./Meal');
-const Participant = require('./Participant');
+const Race = mongoose.model('race');
+const Category = mongoose.model('category');
+const Meal = mongoose.model('meal');
+const Participant = mongoose.model('participant');
 
 const RegistrationSchema = new Schema(
 	{
@@ -38,21 +38,24 @@ const RegistrationSchema = new Schema(
 	{ timestamps: { createdAt: 'timeRegistered' } }
 );
 
-RegistrationSchema.statics.checkStatus = async function(category, cb) {
-	try {
-		const regs = await this.find({ category, paid: true });
-		if (
-			regs.length < category.participantLimit &&
-			category.race.open &&
-			category.race.registrationDeadline > Date.now()
-		) {
-			return cb(null, true);
-		} else {
-			return cb(null, false);
+RegistrationSchema.statics.checkStatus = function(category) {
+	const registration = this;
+
+	return new Promise(async (resolve, reject) => {
+		try {
+			const regs = await registration.find({ category, paid: true });
+			if (
+				regs.length < category.participantLimit &&
+				category.race.open &&
+				category.race.registrationDeadline > Date.now()
+			) {
+				resolve(true);
+			}
+			resolve(false);
+		} catch (err) {
+			reject(err);
 		}
-	} catch (err) {
-		cb(err);
-	}
+	});
 };
 
 RegistrationSchema.pre('save', async function(next) {
@@ -69,7 +72,7 @@ RegistrationSchema.pre('save', async function(next) {
 
 		// this part calculates fee for category registration
 		// and determine if early bird price is valid
-		if (race.earlyBirdDeadline && race.earlyBirdEndDate > Date.now()) {
+		if (race.earlyBirdDeadline && race.earlyBirdDeadline > Date.now()) {
 			reg_bill += category.price.earlyBird;
 		} else {
 			reg_bill += category.price.normal;
@@ -92,13 +95,9 @@ RegistrationSchema.pre('save', async function(next) {
 			orders.map(order => {
 				orders_bill += order.meal.price * order.quantity;
 			});
-			registration.totalBill = reg_bill + orders_bill + postal_bill;
-			next();
-		} else {
-			// if no orders, add only registration bill and postal bill
-			registration.totalBill = reg_bill + postal_bill;
-			next();
 		}
+		reg.totalBill = reg_bill + orders_bill + postal_bill;
+		next();
 	} catch (err) {
 		next(err);
 	}

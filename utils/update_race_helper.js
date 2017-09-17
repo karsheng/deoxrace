@@ -3,8 +3,8 @@ const app = require('../app');
 
 module.exports = (
 	token,
+	race_id,
 	{
-		race_id,
 		name,
 		datetime,
 		address,

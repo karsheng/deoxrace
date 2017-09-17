@@ -4,7 +4,6 @@ const CollectionSchema = require('./CollectionSchema');
 const OrganizerSchema = require('./OrganizerSchema');
 const ApparelSchema = require('./ApparelSchema');
 const DeliverySchema = require('./DeliverySchema');
-const Category = require('./Category');
 
 const RaceSchema = new Schema({
 	name: String,
@@ -40,7 +39,7 @@ const RaceSchema = new Schema({
 
 RaceSchema.pre('save', async function(next) {
 	const race = this;
-
+	const Category = mongoose.model('category');
 	race.categories = await Category.find({ race: race._id });
 
 	_getRaceTypes(race, function(err, types) {
@@ -54,6 +53,7 @@ RaceSchema.pre('save', async function(next) {
 
 async function _getRaceTypes(race, cb) {
 	let types = [];
+	const Category = mongoose.model('category');
 	try {
 		const result = await Category.populate(race, { path: 'categories' });
 

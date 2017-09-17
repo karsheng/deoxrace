@@ -1,6 +1,7 @@
-const Race = require('../models/Race');
-const Category = require('../models/Category');
-const Meal = require('../models/Meal');
+const mongoose = require('mongoose');
+const Race = mongoose.model('race');
+const Category = mongoose.model('category');
+const Meal = mongoose.model('meal');
 
 module.exports = (app, requireAdminAuth) => {
 	app.post(

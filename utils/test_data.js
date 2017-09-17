@@ -1,3 +1,6 @@
+// race with earlyBird and hasDeliveryOption
+// participant with wantsPostalService = true
+
 module.exports = {
 	admin: {
 		email: 'admin@deoxrace.com',
@@ -57,8 +60,9 @@ module.exports = {
 			},
 			gender: 'male',
 			ageMin: 18,
-			ageMax: 30,
-			prize: String,
+			ageMax: 50,
+			participantLimit: 200,
+			prize: 'RM 100',
 			type: 'run',
 			distance: 10
 		},
@@ -71,7 +75,8 @@ module.exports = {
 			gender: 'female',
 			ageMin: 18,
 			ageMax: 30,
-			prize: String,
+			participantLimit: 200,
+			prize: 'RM 200',
 			type: 'run',
 			distance: 10
 		}
@@ -147,9 +152,9 @@ module.exports = {
 	delivery: {
 		hasDeliveryOption: true,
 		postalCharges: {
-			eastMalaysia: 12,
-			westMalaysia: 6,
-			international: 50
+			eastMalaysia: 1200,
+			westMalaysia: 600,
+			international: 5000
 		}
 	},
 	collection: [

@@ -15,6 +15,16 @@ const requireAdminSignin = passport.authenticate('admin-local', {
 	session: false
 });
 
+require('./models/Admin');
+require('./models/Associate');
+require('./models/Race');
+require('./models/Category');
+require('./models/Meal');
+require('./models/Participant');
+require('./models/Registration');
+require('./models/Payment');
+require('./models/User');
+
 mongoose.Promise = global.Promise;
 
 if (process.env.NODE_ENV !== 'test') {
@@ -27,8 +37,10 @@ app.use(morgan('combined'));
 app.use(bodyParser.json({ type: '*/*' })); // parse all request to json
 app.use(cors());
 app.use(compress());
+
 require('./routes/userAuthRoutes')(app, requireSignin);
 require('./routes/userRoutes')(app, requireAuth);
+require('./routes/userRegistrationRoutes')(app, requireAuth);
 require('./routes/adminAuthRoutes')(app, requireAdminSignin);
 require('./routes/adminRoutes')(app, requireAdminAuth);
 
