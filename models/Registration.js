@@ -62,7 +62,6 @@ RegistrationSchema.pre('save', async function(next) {
 	var reg_bill = 0,
 		orders_bill = 0,
 		postal_bill = 0;
-
 	try {
 		let reg = await Category.populate(this, { path: 'category' });
 		reg = await Race.populate(reg, { path: 'race' });
@@ -79,7 +78,7 @@ RegistrationSchema.pre('save', async function(next) {
 		}
 
 		// this part calculates fee for postal
-		if (participant.wantsPostalService) {
+		if (participant.wantsPostalService && race.hasDeliveryOption) {
 			const { postalCharges } = race.delivery;
 
 			postal_bill = _determinePostalCharges(
@@ -87,7 +86,6 @@ RegistrationSchema.pre('save', async function(next) {
 				postalCharges
 			);
 		}
-
 		// if there are orders
 		// this part calculates any fee for meal orders
 		if (orders.length > 0) {

@@ -41,6 +41,7 @@ app.use(compress());
 require('./routes/userAuthRoutes')(app, requireSignin);
 require('./routes/userRoutes')(app, requireAuth);
 require('./routes/userRegistrationRoutes')(app, requireAuth);
+require('./routes/fakepaymentRoutes')(app, requireAuth);
 require('./routes/adminAuthRoutes')(app, requireAdminSignin);
 require('./routes/adminRoutes')(app, requireAdminAuth);
 

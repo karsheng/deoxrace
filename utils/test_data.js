@@ -49,7 +49,8 @@ module.exports = {
 		resultUrl: 'www.example.com',
 		stateName: 'Kuala Lumpur',
 		earlyBirdDeadline: new Date(2018, 1, 1),
-		registrationDeadline: new Date(2018, 2, 2)
+		registrationDeadline: new Date(2018, 2, 2),
+		hasDeliveryOption: true
 	},
 	categories: {
 		one: {
@@ -59,8 +60,8 @@ module.exports = {
 				normal: 6000
 			},
 			gender: 'male',
-			ageMin: 18,
-			ageMax: 50,
+			ageMin: 0,
+			ageMax: 100,
 			participantLimit: 200,
 			prize: 'RM 100',
 			type: 'run',
@@ -73,8 +74,8 @@ module.exports = {
 				normal: 6000
 			},
 			gender: 'female',
-			ageMin: 18,
-			ageMax: 30,
+			ageMin: 0,
+			ageMax: 100,
 			participantLimit: 200,
 			prize: 'RM 200',
 			type: 'run',
@@ -129,6 +130,40 @@ module.exports = {
 			country: 'United States'
 		}
 	},
+	participant2: {
+		fullName: 'Jared Dunn',
+		identityNumber: '1234567',
+		nationality: 'U.S.',
+		countryOfResidence: 'U.S.',
+		gender: 'male',
+		dateOfBirth: new Date(1980, 1, 2),
+		email: 'jared@piedpiper.com',
+		phone: '1234567890',
+		postcode: '45720',
+		city: 'San Francisco',
+		stateName: 'California',
+		emergencyContact: {
+			name: 'Richard Hendricks',
+			relationship: 'Partner',
+			phone: '1234567890'
+		},
+		medicalCondition: {
+			yes: true,
+			description: 'Fragile posterior'
+		},
+		apparelSize: 'M',
+		waiverDeclaration: true,
+		wantsPostalService: true,
+		postalAddress: {
+			line1: '1 Pied Piper Road',
+			line2: 'Silicon Valley',
+			line3: 'Palo Alto',
+			city: 'San Francisco',
+			stateName: 'California',
+			postcode: '12345',
+			country: 'United States'
+		}
+	},
 	organizer: [
 		{
 			name: 'Fictional Sports Brand',
@@ -150,7 +185,6 @@ module.exports = {
 		otherDetail: null
 	},
 	delivery: {
-		hasDeliveryOption: true,
 		postalCharges: {
 			eastMalaysia: 1200,
 			westMalaysia: 600,

@@ -41,6 +41,7 @@ module.exports = (app, requireAdminAuth) => {
 					registrationDeadline,
 					organizer,
 					apparel,
+					hasDeliveryOption,
 					delivery
 				} = req.body;
 
@@ -64,6 +65,7 @@ module.exports = (app, requireAdminAuth) => {
 				race.registrationDeadline = registrationDeadline;
 				race.organizer = organizer;
 				race.apparel = apparel;
+				race.hasDeliveryOption = hasDeliveryOption;
 				race.delivery = delivery;
 
 				res.json(await race.save());

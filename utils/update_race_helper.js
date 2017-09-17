@@ -22,6 +22,7 @@ module.exports = (
 		registrationDeadline,
 		organizer,
 		apparel,
+		hasDeliveryOption,
 		delivery
 	}
 ) => {
@@ -47,6 +48,7 @@ module.exports = (
 				registrationDeadline,
 				organizer,
 				apparel,
+				hasDeliveryOption,
 				delivery
 			})
 			.end((err, res) => {

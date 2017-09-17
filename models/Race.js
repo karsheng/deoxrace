@@ -34,6 +34,7 @@ const RaceSchema = new Schema({
 	registrationDeadline: Date,
 	organizer: [OrganizerSchema],
 	apparel: ApparelSchema,
+	hasDeliveryOption: Boolean,
 	delivery: DeliverySchema
 });
 

@@ -45,7 +45,8 @@ describe('Admin Routes', function(done) {
 			.send({
 				...data.race,
 				meals: [meal1._id],
-				collectionInfo: data.collection
+				collectionInfo: data.collection,
+				delivery: data.delivery
 			})
 			.end(async (err, res) => {
 				const result = await Race.findById(race._id)
@@ -64,6 +65,11 @@ describe('Admin Routes', function(done) {
 						data.race.earlyBirdDeadline.getYear()
 				);
 				assert(result.types[0] === 'run');
+				assert(result.hasDeliveryOption === true);
+				assert(
+					result.delivery.postalCharges.eastMalaysia ===
+						data.delivery.postalCharges.eastMalaysia
+				);
 				done();
 			});
 	});

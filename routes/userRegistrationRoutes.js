@@ -36,7 +36,6 @@ module.exports = (app, requireAuth) => {
 						} else {
 							// if no unpaid registration, create a new registration document
 							// and update participant info
-
 							const p = new Participant(participant);
 							const registration = new Registration({
 								user: user._id,
@@ -46,7 +45,7 @@ module.exports = (app, requireAuth) => {
 								participant: p._id,
 								registerForSelf
 							});
-							p.registration = registration._id;
+
 							const results = await Promise.all([
 								p.save(),
 								registration.save()
