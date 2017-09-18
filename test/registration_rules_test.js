@@ -123,4 +123,47 @@ describe('Registration rules', function() {
 			anotherRegistration.message === 'Registration for this category is closed'
 		);
 	});
+
+	it('returns error if user tries to register to a race that is already closed', async () => {
+		const category = await createCategory(
+			adminToken,
+			race._id,
+			data.categories.one
+		);
+		await updateRace(adminToken, race._id, { ...data.race, open: false });
+		const regError = await createRegistration(
+			userToken,
+			race._id,
+			category._id,
+			{
+				orders: [],
+				participant: data.participant,
+				registerForSelf: true
+			}
+		);
+		assert(regError.message === 'Registration for this category is closed');
+	});
+
+	it('returns error if user tries to register for race that where the registration deadline has passed', async () => {
+		const category = await createCategory(
+			adminToken,
+			race._id,
+			data.categories.one
+		);
+		await updateRace(adminToken, race._id, {
+			...data.race,
+			registrationDeadline: Date.now() - 5 * 24 * 60 * 60 * 1000
+		});
+		const regError = await createRegistration(
+			userToken,
+			race._id,
+			category._id,
+			{
+				orders: [],
+				participant: data.participant,
+				registerForSelf: true
+			}
+		);
+		assert(regError.message === 'Registration for this category is closed');
+	});
 });
