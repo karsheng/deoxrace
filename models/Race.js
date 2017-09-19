@@ -44,9 +44,7 @@ RaceSchema.pre('save', async function(next) {
 	race.categories = await Category.find({ race: race._id });
 
 	_getRaceTypes(race, function(err, types) {
-		if (err) {
-			return next(err);
-		}
+		if (err) return next(err);
 		race.types = types;
 		next();
 	});

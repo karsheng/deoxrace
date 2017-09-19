@@ -16,7 +16,7 @@ module.exports = (app, requireAuth) => {
 					category_id,
 					next,
 					async (errMessage, isEligible) => {
-						if (!isEligible) res.status(422).send(errMessage);
+						if (!isEligible) return res.status(422).send(errMessage);
 
 						// check if user already has an unpaid registration
 						const unpaidReg = await Registration.findOne({ user, paid: false });

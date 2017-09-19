@@ -37,7 +37,6 @@ module.exports = {
 		}
 	},
 	race: {
-		name: 'Race 1',
 		datetime: new Date(2018, 3, 3),
 		address: 'Race Avenue',
 		lat: 3,

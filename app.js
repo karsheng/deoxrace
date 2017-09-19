@@ -44,6 +44,7 @@ require('./routes/userRegistrationRoutes')(app, requireAuth);
 require('./routes/fakepaymentRoutes')(app, requireAuth);
 require('./routes/adminAuthRoutes')(app, requireAdminSignin);
 require('./routes/adminRoutes')(app, requireAdminAuth);
+require('./routes/publicRoutes')(app);
 
 app.use((err, req, res, next) => {
 	res.status(422).send({ error: err.message });
