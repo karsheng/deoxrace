@@ -10,7 +10,7 @@ const createCategory = require('../utils/create_category_helper');
 const createMeal = require('../utils/create_meal_helper');
 const updateRace = require('../utils/update_race_helper');
 
-describe('GET to /api/race/:race_id returns race info', function() {
+describe('Public Routes', function() {
 	this.timeout(20000);
 	// 8 races: 7 open, 1 closed;
 	var runRace, runRace2, runRace3;
@@ -55,39 +55,46 @@ describe('GET to /api/race/:race_id returns race info', function() {
 		runRace = await updateRace(adminToken, runRace._id, {
 			...data.race,
 			name: 'Running Race 1',
-			meals: [meal1]
+			meals: [meal1],
+			datetime: Date.now() + 1000 * 3600 * 24 * 300
 		});
 		runRace2 = await updateRace(adminToken, runRace2._id, {
 			...data.race,
 			name: 'Running Race 2',
-			meals: [meal2]
+			meals: [meal2],
+			datetime: Date.now() + 1000 * 3600 * 24 * 270
 		});
 		runRace3 = await updateRace(adminToken, runRace3._id, {
 			...data.race,
 			name: 'Running Race 3',
-			meals: [meal1, meal2]
+			meals: [meal1, meal2],
+			datetime: Date.now() + 1000 * 3600 * 24 * 240
 		});
 		swimRace = await updateRace(adminToken, swimRace._id, {
 			...data.race,
 			name: 'Swimming Race 1',
-			meals: [meal1]
+			meals: [meal1],
+			datetime: Date.now() + 1000 * 3600 * 24 * 210
 		});
 		cyclingRace = await updateRace(adminToken, cyclingRace._id, {
 			...data.race,
 			name: 'Cycling Race 1',
-			meals: [meal2]
+			meals: [meal2],
+			datetime: Date.now() + 1000 * 3600 * 24 * 180
 		});
 
 		multiRace = await updateRace(adminToken, multiRace._id, {
 			...data.race,
 			name: 'Multisports Race 1',
-			meals: [meal1, meal2]
+			meals: [meal1, meal2],
+			datetime: Date.now() + 1000 * 3600 * 24 * 150
 		});
 
 		obsRace = await updateRace(adminToken, obsRace._id, {
 			...data.race,
 			name: 'Obstacle Race 1',
-			meals: [meal1]
+			meals: [meal1],
+			datetime: Date.now() + 1000 * 3600 * 24 * 120
 		});
 
 		// closed race
@@ -100,7 +107,8 @@ describe('GET to /api/race/:race_id returns race info', function() {
 		closedRace = await updateRace(adminToken, closedRace._id, {
 			...data.race,
 			name: 'Closed Race 1',
-			open: false
+			open: false,
+			datetime: Date.now() - 1000 * 3600 * 24 * 210
 		});
 	});
 
@@ -108,14 +116,38 @@ describe('GET to /api/race/:race_id returns race info', function() {
 		request(app)
 			.get(`/api/race/${swimRace._id}`)
 			.end((err, res) => {
-				try {
-					assert(res.body.name === swimRace.name);
-					assert(res.body.types[0] === 'swim');
-				} catch (e) {
-					console.log(e);
-				} finally {
-					done();
-				}
+				assert(res.body.name === swimRace.name);
+				assert(res.body.types[0] === 'swim');
+				assert(res.body.meals[0].name === meal1.name);
+				done();
+			});
+	});
+
+	// TODO: upate with pagination
+	it('GET to /api/race/open/all returns all open race info sorted by date (soonest first)', done => {
+		request(app)
+			.get('/api/race/open/all')
+			.end((err, res) => {
+				assert(res.body.length === 7);
+				assert(res.body[0].name === 'Obstacle Race 1');
+				assert(res.body[6].name === 'Running Race 1');
+				done();
+			});
+	});
+
+	it('GET to /api/race/open with types query returns all open specific race sorted by date (soonest first)', done => {
+		request(app)
+			.get('/api/race/open?types=run')
+			.end((err, res) => {
+				assert(res.body.length === 3);
+				assert(res.body[0].name === 'Running Race 3');
+				request(app)
+					.get('/api/race/open?types=swim')
+					.end((err, res) => {
+						assert(res.body.length === 1);
+						assert(res.body[0].name === 'Swimming Race 1');
+						done();
+					});
 			});
 	});
 });
