@@ -27,7 +27,7 @@ describe('Registration rules', function() {
 			email: data.user.email,
 			password: data.user.password
 		});
-		race = await createRace(adminToken, { name: 'Race ' });
+		race = await createRace(adminToken, { name: 'Race' });
 	});
 
 	it('returns error if user age does not fall within allowable age range', async () => {
