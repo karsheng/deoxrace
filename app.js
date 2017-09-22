@@ -6,6 +6,8 @@ const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const compress = require('compression');
+const keys = require('./config/keys');
+
 const passportService = require('./services/passport');
 const passport = require('passport');
 const requireAuth = passport.authenticate('user-jwt', { session: false });
@@ -28,8 +30,7 @@ require('./models/User');
 mongoose.Promise = global.Promise;
 
 if (process.env.NODE_ENV !== 'test') {
-	// TODO: temporary connection, to open a dev account on mongolab
-	mongoose.connect('mongodb://localhost:deoevents/deoevents');
+	mongoose.connect(keys.mongoURI);
 }
 
 // App Setup

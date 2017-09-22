@@ -1,30 +1,35 @@
 {
-  "name": "deoxrace",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "NODE_ENV=test nodemon --exec mocha --recursive -R min"
-  },
-  "author": "Lee Kar Sheng",
-  "license": "ISC",
-  "engine": {
-    "node": "^8.4.0"
-  },
-  "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.18.0",
-    "compression": "^1.7.0",
-    "cors": "^2.8.4",
-    "express": "^4.15.4",
-    "jwt-simple": "^0.5.1",
-    "mocha": "^3.5.2",
-    "mongoose": "^4.11.10",
-    "morgan": "^1.8.2",
-    "nodemon": "^1.12.0",
-    "passport": "^0.4.0",
-    "passport-jwt": "^3.0.0",
-    "passport-local": "^1.0.0",
-    "supertest": "^3.0.0"
-  }
+	"name": "deoxrace",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js",
+		"server": "nodemon index.js",
+		"test": "NODE_ENV=test nodemon --exec mocha --recursive -R min",
+		"client": "npm run start --prefix client",
+		"dev": "concurrently \"npm run server\" \"npm run client\""
+	},
+	"author": "Lee Kar Sheng",
+	"license": "ISC",
+	"engine": {
+		"node": "^8.4.0"
+	},
+	"dependencies": {
+		"bcrypt-nodejs": "0.0.3",
+		"body-parser": "^1.18.0",
+		"compression": "^1.7.0",
+		"concurrently": "^3.5.0",
+		"cors": "^2.8.4",
+		"express": "^4.15.4",
+		"jwt-simple": "^0.5.1",
+		"mocha": "^3.5.2",
+		"mongoose": "^4.11.10",
+		"morgan": "^1.8.2",
+		"nodemon": "^1.12.0",
+		"passport": "^0.4.0",
+		"passport-jwt": "^3.0.0",
+		"passport-local": "^1.0.0",
+		"supertest": "^3.0.0"
+	}
 }
