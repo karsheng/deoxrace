@@ -19,6 +19,7 @@
 		"react-scripts": "1.0.13",
 		"react-svg": "^2.1.21",
 		"redux": "^3.7.2",
+		"redux-form": "^7.0.4",
 		"redux-thunk": "^2.2.0"
 	},
 	"scripts": {
