@@ -30,6 +30,7 @@ const RaceSchema = new Schema({
 	resultUrl: String,
 	types: [String],
 	stateName: String,
+	hasEarlyBirdRate: Boolean,
 	earlyBirdDeadline: Date,
 	registrationDeadline: Date,
 	organizer: [OrganizerSchema],

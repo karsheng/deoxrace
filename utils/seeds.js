@@ -21,23 +21,32 @@ const seeding = async () => {
 	});
 	const obsRace = await createRace(adminToken, { name: 'Obstacle Race 1' });
 
-	const runCat = await createCategory(adminToken, runRace._id, { type: 'run' });
+	const runCat = await createCategory(adminToken, runRace._id, {
+		...data.categories.one,
+		type: 'run'
+	});
 	const runCat2 = await createCategory(adminToken, runRace2._id, {
+		...data.categories.one,
 		type: 'run'
 	});
 	const runCat3 = await createCategory(adminToken, runRace3._id, {
+		...data.categories.one,
 		type: 'run'
 	});
 	const swimCat = await createCategory(adminToken, swimRace._id, {
+		...data.categories.one,
 		type: 'swim'
 	});
 	const cyclingCat = await createCategory(adminToken, cyclingRace._id, {
+		...data.categories.one,
 		type: 'cycling'
 	});
 	const multiCat = await createCategory(adminToken, multiRace._id, {
+		...data.categories.one,
 		type: 'multi'
 	});
 	const obsCat = await createCategory(adminToken, obsRace._id, {
+		...data.categories.one,
 		type: 'obstacle'
 	});
 
@@ -46,30 +55,50 @@ const seeding = async () => {
 
 	await updateRace(adminToken, runRace._id, {
 		...data.race,
+		organizer: data.organizer,
+		apparel: data.apparel,
+		delivery: data.delivery,
+		collectionInfo: data.collection,
 		name: 'Running Race 1',
 		meals: [meal1],
 		datetime: Date.now() + 1000 * 3600 * 24 * 300
 	});
 	await updateRace(adminToken, runRace2._id, {
 		...data.race,
+		organizer: data.organizer,
+		apparel: data.apparel,
+		delivery: data.delivery,
+		collectionInfo: data.collection,
 		name: 'Running Race 2',
 		meals: [meal2],
 		datetime: Date.now() + 1000 * 3600 * 24 * 270
 	});
 	await updateRace(adminToken, runRace3._id, {
 		...data.race,
+		organizer: data.organizer,
+		apparel: data.apparel,
+		delivery: data.delivery,
+		collectionInfo: data.collection,
 		name: 'Running Race 3',
 		meals: [meal1, meal2],
 		datetime: Date.now() + 1000 * 3600 * 24 * 240
 	});
 	await updateRace(adminToken, swimRace._id, {
 		...data.race,
+		organizer: data.organizer,
+		apparel: data.apparel,
+		delivery: data.delivery,
+		collectionInfo: data.collection,
 		name: 'Swimming Race 1',
 		meals: [meal1],
 		datetime: Date.now() + 1000 * 3600 * 24 * 210
 	});
 	await updateRace(adminToken, cyclingRace._id, {
 		...data.race,
+		organizer: data.organizer,
+		apparel: data.apparel,
+		delivery: data.delivery,
+		collectionInfo: data.collection,
 		name: 'Cycling Race 1',
 		meals: [meal2],
 		datetime: Date.now() + 1000 * 3600 * 24 * 180
@@ -77,6 +106,10 @@ const seeding = async () => {
 
 	await updateRace(adminToken, multiRace._id, {
 		...data.race,
+		organizer: data.organizer,
+		apparel: data.apparel,
+		delivery: data.delivery,
+		collectionInfo: data.collection,
 		name: 'Multisports Race 1',
 		meals: [meal1, meal2],
 		datetime: Date.now() + 1000 * 3600 * 24 * 150
@@ -84,6 +117,10 @@ const seeding = async () => {
 
 	await updateRace(adminToken, obsRace._id, {
 		...data.race,
+		organizer: data.organizer,
+		apparel: data.apparel,
+		delivery: data.delivery,
+		collectionInfo: data.collection,
 		name: 'Obstacle Race 1',
 		meals: [meal1],
 		datetime: Date.now() + 1000 * 3600 * 24 * 120
@@ -98,6 +135,10 @@ const seeding = async () => {
 	);
 	await updateRace(adminToken, closedRace._id, {
 		...data.race,
+		organizer: data.organizer,
+		apparel: data.apparel,
+		delivery: data.delivery,
+		collectionInfo: data.collection,
 		name: 'Closed Race 1',
 		open: false,
 		datetime: Date.now() - 1000 * 3600 * 24 * 210

@@ -37,6 +37,7 @@ module.exports = (app, requireAdminAuth) => {
 					collectionInfo,
 					resultUrl,
 					stateName,
+					hasEarlyBirdRate,
 					earlyBirdDeadline,
 					registrationDeadline,
 					organizer,
@@ -61,6 +62,7 @@ module.exports = (app, requireAdminAuth) => {
 				race.collectionInfo = collectionInfo;
 				race.resultUrl = resultUrl;
 				race.stateName = stateName;
+				race.hasEarlyBirdRate = hasEarlyBirdRate;
 				race.earlyBirdDeadline = earlyBirdDeadline;
 				race.registrationDeadline = registrationDeadline;
 				race.organizer = organizer;

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import racesReducer from './racesReducer';
+import raceReducer from './raceReducer';
 
 const rootReducer = combineReducers({
-	races: racesReducer
+	races: raceReducer
 });
 
 export default rootReducer;

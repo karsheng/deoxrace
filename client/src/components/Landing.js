@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchRaces } from '../actions/racesActions';
+import { fetchRaces } from '../actions/raceActions';
 import _ from 'lodash';
 import RaceCard from './races/RaceCard';
 

@@ -47,6 +47,7 @@ module.exports = {
 		types: 'run',
 		resultUrl: 'www.example.com',
 		stateName: 'Kuala Lumpur',
+		hasEarlyBirdRate: true,
 		earlyBirdDeadline: new Date(2018, 1, 1),
 		registrationDeadline: new Date(2018, 2, 2),
 		hasDeliveryOption: true

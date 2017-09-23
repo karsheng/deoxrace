@@ -71,7 +71,7 @@ RegistrationSchema.pre('save', async function(next) {
 
 		// this part calculates fee for category registration
 		// and determine if early bird price is valid
-		if (race.earlyBirdDeadline && race.earlyBirdDeadline > Date.now()) {
+		if (race.hasEarlyBirdRate && race.earlyBirdDeadline > Date.now()) {
 			reg_bill += category.price.earlyBird;
 		} else {
 			reg_bill += category.price.normal;
