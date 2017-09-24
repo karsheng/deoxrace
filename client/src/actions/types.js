@@ -5,8 +5,8 @@ export const AUTH_SIGNUP_ERROR = 'auth_signup_error';
 export const OPEN_AUTH_DIALOG = 'open_signin_dialog';
 export const CLOSE_AUTH_DIALOG = 'close_signin_dialog';
 
-export const FETCH_USER_INFO = 'fetch_user_info';
-export const UPDATE_USER_INFO = 'update_user_info';
+export const FETCH_USER = 'fetch_user';
+export const UPDATE_USER = 'update_user';
 
 export const FETCH_RACES = 'fetch_races';
 export const FETCH_RACE = 'fetch_race';

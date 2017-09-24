@@ -52,13 +52,6 @@ class Signup extends Component {
 				<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
 					<h2>Sign Up</h2>
 					<Field
-						label="Name:"
-						type="text"
-						name="name"
-						component={renderField}
-					/>
-					<br />
-					<Field
 						label="Email:"
 						type="text"
 						name="email"

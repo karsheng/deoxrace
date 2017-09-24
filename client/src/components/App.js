@@ -5,9 +5,14 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Header from './Header';
 import Landing from './Landing';
 import RacePage from './races/RacePage';
+
+import Profile from './user/Profile';
+import EditProfile from './user/EditProfile';
+
 import Signin from './auth/Signin';
 import Signup from './auth/Signup';
 import Signout from './auth/Signout';
+import RequireAuth from './auth/RequireAuth';
 
 const App = () => {
 	return (
@@ -18,6 +23,12 @@ const App = () => {
 						<Header />
 						<Route exact path="/" component={Landing} />
 						<Route path="/race/:race_id" component={RacePage} />
+						<Route
+							exact
+							path="/profile/edit"
+							component={RequireAuth(EditProfile)}
+						/>
+						<Route exact path="/profile" component={RequireAuth(Profile)} />
 						<Route path="/signin" component={Signin} />
 						<Route path="/signup" component={Signup} />
 						<Route path="/signout" component={Signout} />

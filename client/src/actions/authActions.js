@@ -6,8 +6,8 @@ import {
 	AUTH_SIGNUP_ERROR,
 	OPEN_AUTH_DIALOG,
 	CLOSE_AUTH_DIALOG,
-	FETCH_USER_INFO,
-	UPDATE_USER_INFO
+	FETCH_USER,
+	UPDATE_USER
 } from './types';
 
 export const signinUser = ({ email, password }, cb) => async dispatch => {
@@ -18,7 +18,7 @@ export const signinUser = ({ email, password }, cb) => async dispatch => {
 
 		const res2 = await axios.get('/api/user/profile', config);
 		dispatch({ type: AUTH_USER });
-		dispatch({ type: FETCH_USER_INFO, payload: res2.data });
+		dispatch({ type: FETCH_USER, payload: res2.data });
 		cb(null);
 	} catch (e) {
 		console.log(e);
@@ -42,7 +42,7 @@ export const signupUser = (formProps, cb) => async dispatch => {
 
 		const res2 = await axios.get('/api/user/profile', config);
 		dispatch({ type: AUTH_USER });
-		dispatch({ type: FETCH_USER_INFO, payload: res2.data });
+		dispatch({ type: FETCH_USER, payload: res2.data });
 		cb(null);
 	} catch (e) {
 		console.log(e);
@@ -61,7 +61,7 @@ export const authSignupError = error => {
 export const signoutUser = () => async dispatch => {
 	localStorage.removeItem('deotoken');
 	dispatch({ type: UNAUTH_USER });
-	dispatch({ type: UPDATE_USER_INFO, payload: {} });
+	dispatch({ type: UPDATE_USER, payload: {} });
 };
 
 export const openAuthDialog = () => async dispatch => {

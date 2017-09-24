@@ -18,7 +18,7 @@ const ParticipantSchema = new Schema({
 		relationship: String,
 		phone: String
 	},
-	hasMedicalCondition: Boolean,
+	hasMedicalCondition: { type: Boolean, default: null },
 	medicalConditionDescription: String,
 	apparelSize: String,
 	waiverDeclaration: Boolean,

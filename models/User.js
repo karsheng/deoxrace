@@ -29,7 +29,7 @@ const UserSchema = new Schema({
 		relationship: String,
 		phone: String
 	},
-	hasMedicalCondition: Boolean,
+	hasMedicalCondition: { type: Boolean, default: null },
 	medicalConditionDescription: String,
 	dateOfBirth: Date,
 	postalAddress: {

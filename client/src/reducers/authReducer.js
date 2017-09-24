@@ -8,7 +8,8 @@ import {
 } from '../actions/types';
 
 const initialState = {
-	authDialogOpen: false
+	authDialogOpen: false,
+	authenticated: null
 };
 
 export default function(state = { ...initialState }, action) {
