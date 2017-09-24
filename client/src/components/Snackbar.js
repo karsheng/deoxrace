@@ -16,9 +16,9 @@ class SnackbarComponent extends Component {
 	}
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
 	const { open, message } = state.snackbar;
 	return { open, message };
-}
+};
 
 export default connect(mapStateToProps, { closeSnackbar })(SnackbarComponent);

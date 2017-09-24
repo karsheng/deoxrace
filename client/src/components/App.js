@@ -14,6 +14,8 @@ import Signup from './auth/Signup';
 import Signout from './auth/Signout';
 import RequireAuth from './auth/RequireAuth';
 
+import ParticipantForm from './registration/ParticipantForm';
+
 const App = () => {
 	return (
 		<div className="container">
@@ -22,6 +24,10 @@ const App = () => {
 					<div>
 						<Header />
 						<Route exact path="/" component={Landing} />
+						<Route
+							path="/registration/participant/:race_id"
+							component={ParticipantForm}
+						/>
 						<Route path="/race/:race_id" component={RacePage} />
 						<Route
 							exact

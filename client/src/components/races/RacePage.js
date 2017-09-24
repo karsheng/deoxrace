@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as raceActions from '../../actions/raceActions';
-// import { openAuthDialog } from '../../actions/auth_actions';
+import { openAuthDialog } from '../../actions/authActions';
 import { Link } from 'react-router-dom';
 import Progress from '../Progress';
 import {
@@ -16,8 +16,8 @@ import formatDate from '../../utils/formatDate';
 import getTime from '../../utils/getTime';
 import RaceMap from './RaceMap';
 import RaceCategoryTable from './RaceCategoryTable';
-// import AuthDialog from '../auth/auth_dialog';
-// import RegistrationCheckDialog from '../registration/registration_check_dialog';
+import AuthDialog from '../auth/AuthDialog';
+import RegistrationCheckDialog from '../registration/RegistrationCheckDialog';
 import RaceAccommodationDialog from './RaceAccommodationDialog';
 import RaceDirectionDialog from './RaceDirectionDialog';
 
@@ -41,10 +41,10 @@ const style = {
 class RacePage extends Component {
 	constructor(props) {
 		super(props);
-		// regCheckDialogOpen: false,
 		this.state = {
 			accoDialogOpen: false,
-			directionDialogOpen: false
+			directionDialogOpen: false,
+			regCheckDialogOpen: false
 		};
 	}
 	componentDidMount() {
@@ -53,13 +53,13 @@ class RacePage extends Component {
 		this.props.fetchRace(race_id);
 	}
 
-	// openRegCheckDialog() {
-	// 	this.setState({ regCheckDialogOpen: true });
-	// }
-	//
-	// closeRegCheckDialog() {
-	// 	this.setState({ regCheckDialogOpen: false });
-	// }
+	openRegCheckDialog() {
+		this.setState({ regCheckDialogOpen: true });
+	}
+
+	closeRegCheckDialog() {
+		this.setState({ regCheckDialogOpen: false });
+	}
 
 	openAccoDialog() {
 		this.setState({ accoDialogOpen: true });
@@ -166,21 +166,21 @@ class RacePage extends Component {
 		}
 	}
 
-	// handleRegisterButtonclick() {
-	// 	if (this.props.authenticated) {
-	// 		this.openRegCheckDialog();
-	// 	} else {
-	// 		this.props.openAuthDialog();
-	// 	}
-	// }
+	handleRegisterButtonClick() {
+		if (this.props.authenticated) {
+			this.openRegCheckDialog();
+		} else {
+			this.props.openAuthDialog();
+		}
+	}
 
 	renderRegisterButton(race) {
-		// onClick={this.handleRegisterButtonclick.bind(this)}
 		return (
 			<RaisedButton
 				style={style.registerButton}
 				primary={true}
 				label="Register"
+				onClick={this.handleRegisterButtonClick.bind(this)}
 			/>
 		);
 	}
@@ -227,22 +227,23 @@ class RacePage extends Component {
 					lat={race.lat}
 					lng={race.lng}
 				/>
+				<AuthDialog />
+				<RegistrationCheckDialog
+					regCheckDialogOpen={this.state.regCheckDialogOpen}
+					closeRegCheckDialog={this.closeRegCheckDialog.bind(this)}
+				/>
 			</div>
 		);
 	}
-
-	// <AuthDialog />
-	// <RegistrationCheckDialog
-	// 	regCheckDialogOpen={this.state.regCheckDialogOpen}
-	// 	closeRegCheckDialog={this.closeRegCheckDialog.bind(this)}
-	// />
 }
 
-function mapStateToProps(state, ownProps) {
+const mapStateToProps = (state, ownProps) => {
 	return {
-		race: state.races[ownProps.match.params.race_id]
-		// authenticated: state.auth.authenticated
+		race: state.races[ownProps.match.params.race_id],
+		authenticated: state.auth.authenticated
 	};
-}
+};
 
-export default connect(mapStateToProps, raceActions)(RacePage);
+export default connect(mapStateToProps, { ...raceActions, openAuthDialog })(
+	RacePage
+);
