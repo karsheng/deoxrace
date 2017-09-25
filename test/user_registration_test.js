@@ -27,11 +27,12 @@ describe('User Registration Routes', function() {
 			email: data.user.email,
 			password: data.user.password
 		});
-		race1 = await createRace(adminToken, { name: data.race.name });
+		race1 = await createRace(adminToken, { name: 'Race 1' });
 		cat1 = await createCategory(adminToken, race1._id, data.categories.one);
 		meal1 = await createMeal(adminToken, data.meals.one);
 		await updateRace(adminToken, race1._id, {
 			...data.race,
+			name: 'Race 1',
 			meals: [meal1],
 			collectionInfo: data.collection,
 			organizer: data.organizer,
@@ -73,7 +74,7 @@ describe('User Registration Routes', function() {
 					.populate({ path: 'category', model: 'category' })
 					.populate({ path: 'participant', model: 'participant' });
 				assert(reg.totalBill === 10900);
-				assert(reg.race.name === data.race.name);
+				assert(reg.race.name === 'Race 1');
 				assert(reg.user.name === data.user.name);
 				assert(reg.category.name === cat1.name);
 				assert(reg.paid === false);
@@ -113,5 +114,28 @@ describe('User Registration Routes', function() {
 		assert(reg2.registerForSelf === false);
 
 		assert(reg._id.toString() === reg2._id.toString());
+	});
+
+	it('GET to /api/registration/:registration_id returns the registration', done => {
+		createRegistration(userToken, race1._id, cat1._id, {
+			orders: [],
+			participant: data.participant,
+			registerForSelf: true
+		}).then(reg => {
+			request(app)
+				.get(`/api/registration/${reg._id}`)
+				.set('authorization', userToken)
+				.end((err, res) => {
+					assert(res.body.race.name === 'Race 1');
+					assert(res.body.orders.length === 0);
+					// not eligible for earlybird
+					assert(res.body.totalBill === 10000);
+					assert(
+						res.body.participant.registration.toString() === reg._id.toString()
+					);
+					assert(res.body.participant.fullName === 'Gavin Belson');
+					done();
+				});
+		});
 	});
 });

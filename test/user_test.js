@@ -26,7 +26,7 @@ const {
 } = data.user;
 
 describe('User Routes', function(done) {
-	this.timeout(15000);
+	this.timeout(20000);
 	var token;
 
 	beforeEach(async () => {

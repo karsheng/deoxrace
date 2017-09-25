@@ -16,7 +16,6 @@ module.exports = (app, requireAuth) => {
 
 	app.put('/api/user/profile', requireAuth, async (req, res, next) => {
 		const {
-			name,
 			fullName,
 			phone,
 			gender,

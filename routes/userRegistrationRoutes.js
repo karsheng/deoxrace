@@ -45,7 +45,7 @@ module.exports = (app, requireAuth) => {
 								participant: p._id,
 								registerForSelf
 							});
-
+							p.registration = registration._id;
 							const results = await Promise.all([
 								p.save(),
 								registration.save()
@@ -56,6 +56,29 @@ module.exports = (app, requireAuth) => {
 				);
 			} catch (err) {
 				next(err);
+			}
+		}
+	);
+
+	app.get(
+		'/api/registration/:registration_id',
+		requireAuth,
+		async (req, res, next) => {
+			const { registration_id } = req.params;
+			const { user } = req;
+			try {
+				const registration = await Registration.findOne({
+					_id: registration_id,
+					user
+				})
+					.populate({ path: 'category', model: 'category' })
+					.populate({ path: 'orders.meal', model: 'meal' })
+					.populate({ path: 'race', model: 'race' })
+					.populate({ path: 'participant', model: 'participant' });
+
+				res.json(registration);
+			} catch (e) {
+				next(e);
 			}
 		}
 	);
