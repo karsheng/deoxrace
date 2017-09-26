@@ -45,9 +45,8 @@ class ParticipantForm extends Component {
 	componentWillMount() {
 		this.props.updateStepper(0);
 		const { race_id } = this.props.match.params;
-		this.props.fetchRace(race_id, () => {
-			this.props.fetchCategoriesAvailability(race_id);
-		});
+		this.props.fetchRace(race_id);
+		this.props.fetchCategoriesAvailability(race_id);
 	}
 
 	componentDidMount() {
@@ -79,7 +78,7 @@ class ParticipantForm extends Component {
 			phone: formProps.emergencyContactPhone
 		};
 
-		this.props.updateParticipantInfo(participant);
+		this.props.updateParticipant(participant);
 		this.props.history.push(`/registration/category/${race_id}`);
 	}
 

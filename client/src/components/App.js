@@ -15,6 +15,7 @@ import Signout from './auth/Signout';
 import RequireAuth from './auth/RequireAuth';
 
 import ParticipantForm from './registration/ParticipantForm';
+import CategorySelection from './registration/CategorySelection';
 
 const App = () => {
 	return (
@@ -27,6 +28,10 @@ const App = () => {
 						<Route
 							path="/registration/participant/:race_id"
 							component={ParticipantForm}
+						/>
+						<Route
+							path="/registration/category/:race_id"
+							component={CategorySelection}
 						/>
 						<Route path="/race/:race_id" component={RacePage} />
 						<Route

@@ -110,7 +110,7 @@ class EditProfile extends Component {
 				line3: formProps.line3,
 				city: formProps.postalCity,
 				postcode: formProps.postalPostcode,
-				state: formProps.postalState,
+				stateName: formProps.postalState,
 				country: formProps.postalCountry
 			};
 

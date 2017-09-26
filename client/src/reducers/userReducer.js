@@ -28,7 +28,7 @@ function mapDataToFormKey(user) {
 		user.line3 = user.postalAddress.line3;
 		user.postalCity = user.postalAddress.city;
 		user.postalPostcode = user.postalAddress.postcode;
-		user.postalState = user.postalAddress.state;
+		user.postalState = user.postalAddress.stateName;
 		user.postalCountry = user.postalAddress.country;
 	}
 

@@ -139,7 +139,7 @@ class Profile extends Component {
 						</strong>
 						<span className="col-xs-12 col-md-4">State:</span>
 						<strong className="col-xs-12 col-md-8">
-							{postalAddress.state || 'Not provided'}
+							{postalAddress.stateName || 'Not provided'}
 						</strong>
 						<span className="col-xs-12 col-md-4">Country:</span>
 						<strong className="col-xs-12 col-md-8">
