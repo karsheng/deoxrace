@@ -16,6 +16,7 @@ import RequireAuth from './auth/RequireAuth';
 
 import ParticipantForm from './registration/ParticipantForm';
 import CategorySelection from './registration/CategorySelection';
+import MealSelection from './registration/MealSelection';
 
 const App = () => {
 	return (
@@ -27,11 +28,15 @@ const App = () => {
 						<Route exact path="/" component={Landing} />
 						<Route
 							path="/registration/participant/:race_id"
-							component={ParticipantForm}
+							component={RequireAuth(ParticipantForm)}
 						/>
 						<Route
 							path="/registration/category/:race_id"
-							component={CategorySelection}
+							component={RequireAuth(CategorySelection)}
+						/>
+						<Route
+							path="/registration/meal/:race_id"
+							component={RequireAuth(MealSelection)}
 						/>
 						<Route path="/race/:race_id" component={RacePage} />
 						<Route

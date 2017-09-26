@@ -75,8 +75,8 @@ class CategoryCard extends Component {
 						<h4>{category.name}</h4>
 						<h5>
 							{earlyBirdValid
-								? `RM ${category.price.earlyBird} (early bird)`
-								: `RM ${category.price.normal}`}
+								? `RM ${category.price.earlyBird / 100} (early bird)`
+								: `RM ${category.price.normal / 100}`}
 						</h5>
 						<h5 style={available ? style.available : style.unavailable}>
 							{available ? 'Available' : 'Not Available'}
