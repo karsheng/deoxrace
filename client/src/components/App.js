@@ -8,6 +8,7 @@ import RacePage from './races/RacePage';
 
 import Profile from './user/Profile';
 import EditProfile from './user/EditProfile';
+import History from './user/History';
 
 import Signin from './auth/Signin';
 import Signup from './auth/Signup';
@@ -60,6 +61,8 @@ const App = () => {
 							component={RequireAuth(EditProfile)}
 						/>
 						<Route exact path="/profile" component={RequireAuth(Profile)} />
+						<Route exact path="/history" component={RequireAuth(History)} />
+
 						<Route path="/signin" component={Signin} />
 						<Route path="/signup" component={Signup} />
 						<Route path="/signout" component={Signout} />

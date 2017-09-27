@@ -4,9 +4,22 @@ const User = mongoose.model('user');
 module.exports = (app, requireAuth) => {
 	app.get('/api/user/profile', requireAuth, async (req, res, next) => {
 		try {
-			const user = await User.findById(req.user._id).select(
-				'-password -loginAttempts'
-			);
+			const user = await User.findById(req.user._id)
+				.populate({
+					path: 'registrations',
+					populate: {
+						path: 'race',
+						model: 'race'
+					}
+				})
+				.populate({
+					path: 'registrations',
+					populate: {
+						path: 'participant',
+						model: 'participant'
+					}
+				})
+				.select('-password -loginAttempts');
 
 			res.json(user);
 		} catch (err) {
