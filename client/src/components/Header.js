@@ -85,7 +85,7 @@ class Header extends Component {
 					case '/':
 						this.setState({ selectedTab: 1 });
 						break;
-					case '/race/browse':
+					case '/browse':
 						this.setState({ selectedTab: 2 });
 						break;
 					case '/results':
@@ -132,7 +132,7 @@ class Header extends Component {
 			</MenuItem>,
 			<MenuItem
 				key={2}
-				containerElement={<Link to="/race/browse" />}
+				containerElement={<Link to="/browse" />}
 				onClick={this.handleClose}
 			>
 				Races
@@ -187,7 +187,7 @@ class Header extends Component {
 						key={2}
 						style={style.navItem}
 						label="RACES"
-						onActive={() => this.props.history.push('/race/browse')}
+						onActive={() => this.props.history.push('/browse')}
 						value={2}
 					/>
 					<Tab key={3} style={style.navItem} label="RESULTS" value={3} />

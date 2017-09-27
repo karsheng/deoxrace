@@ -35,7 +35,7 @@ const seeding = async () => {
 	});
 	const swimCat = await createCategory(adminToken, swimRace._id, {
 		...data.categories.one,
-		type: 'swim'
+		type: 'swimming'
 	});
 	const cyclingCat = await createCategory(adminToken, cyclingRace._id, {
 		...data.categories.one,
@@ -43,7 +43,7 @@ const seeding = async () => {
 	});
 	const multiCat = await createCategory(adminToken, multiRace._id, {
 		...data.categories.one,
-		type: 'multi'
+		type: 'multisports'
 	});
 	const obsCat = await createCategory(adminToken, obsRace._id, {
 		...data.categories.one,

@@ -4,7 +4,9 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import Header from './Header';
 import Landing from './Landing';
+
 import RacePage from './races/RacePage';
+import RaceBrowse from './races/RaceBrowse';
 
 import Profile from './user/Profile';
 import EditProfile from './user/EditProfile';
@@ -54,6 +56,7 @@ const App = () => {
 							path="/registration/confirmation/:registration_id"
 							component={RequireAuth(Confirmation)}
 						/>
+						<Route path="/browse" component={RaceBrowse} />
 						<Route path="/race/:race_id" component={RacePage} />
 						<Route
 							exact

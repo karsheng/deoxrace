@@ -29,10 +29,11 @@ export const fetchRace = race_id => async dispatch => {
 
 export const fetchSpecificRaces = (type, cb) => async dispatch => {
 	try {
-		const res = await axios.get(`/api/race/open?type=${type}`);
+		const res = await axios.get(`/api/race/open?types=${type}`);
 		dispatch({ type: FETCH_SPECIFIC_RACES, payload: res.data });
-		cb();
+		cb(null);
 	} catch (e) {
+		cb(e);
 		console.log(e);
 	}
 };

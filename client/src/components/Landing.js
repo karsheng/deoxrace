@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { fetchRaces } from '../actions/raceActions';
 import _ from 'lodash';
 import RaceCard from './races/RaceCard';
+import Progress from './Progress';
 
 class Landing extends Component {
-	componentDidMount() {
+	componentWillMount() {
 		this.props.fetchRaces();
 	}
 
@@ -17,7 +18,7 @@ class Landing extends Component {
 
 	render() {
 		const { races } = this.props;
-		if (!races) return <div>Loading...</div>;
+		if (!races) return <Progress />;
 		return <div>{this.renderRaceCards(races)}</div>;
 	}
 }
