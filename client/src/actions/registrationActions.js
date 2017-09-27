@@ -43,7 +43,7 @@ export const createRegistration = (
 	delete participant._id;
 	try {
 		const response = await axios.post(
-			`/api/race/register/${race._id}/${category._id}`,
+			`/api/registration/${race._id}/${category._id}`,
 			{ orders, participant, registerForSelf },
 			config
 		);
@@ -66,13 +66,10 @@ export const fetchRegistration = (registration_id, cb) => async dispatch => {
 			`/api/registration/${registration_id}`,
 			config
 		);
-
-		dispatch({
-			type: FETCH_REGISTRATION,
-			payload: response.data
-		});
-		cb(response.data);
+		dispatch({ type: FETCH_REGISTRATION, payload: response.data });
+		cb(null, response.data);
 	} catch (e) {
 		console.log(e);
+		cb(e);
 	}
 };

@@ -86,13 +86,13 @@ class MealSelection extends Component {
 	}
 }
 
-function mapStateToProps(state, ownProps) {
+const mapStateToProps = (state, ownProps) => {
 	return {
 		race: state.races[ownProps.match.params.race_id],
 		selectedCategory: state.registration.selectedCategory,
 		selectedMeals: state.registration.selectedMeals
 	};
-}
+};
 
 export default connect(mapStateToProps, { resetMealSelection, updateStepper })(
 	MealSelection

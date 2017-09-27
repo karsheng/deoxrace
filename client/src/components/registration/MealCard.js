@@ -108,10 +108,10 @@ class MealCard extends Component {
 	}
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
 	return {
 		selectedMeals: state.registration.selectedMeals
 	};
-}
+};
 
 export default connect(mapStateToProps, { selectMeal, deselectMeal })(MealCard);
