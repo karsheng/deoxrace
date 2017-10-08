@@ -24,6 +24,8 @@ export const SET_TOTAL_PRICE = 'set_total_price';
 export const CREATE_REGISTRATION = 'create_registration';
 export const FETCH_REGISTRATION = 'fetch_registration';
 
+export const HANDLE_STRIPE_TOKEN = 'handle_stripe_token';
+
 export const UPDATE_PARTICIPANT = 'update_participant';
 
 export const UPDATE_STEPPER = 'update_stepper';

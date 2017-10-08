@@ -3,9 +3,7 @@ import { fetchRegistration } from '../../actions/registrationActions';
 import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
 import Progress from '../Progress';
-
-//TODO: To be deleted after integration of payment system
-import FakePaymentButton from './FakePaymentButton';
+import StripePayments from '../payments/StripePayments';
 
 const style = {
 	paper: {
@@ -44,8 +42,9 @@ class Payment extends Component {
 					This is to simulate payment by user. Payment system will be integrated
 					as part of Milestone 2
 				</h6>
-				<FakePaymentButton
-					regId={this.props.info._id}
+				<StripePayments
+					registrationId={this.props.info._id}
+					totalBill={totalBill}
 					history={this.props.history}
 				/>
 			</Paper>

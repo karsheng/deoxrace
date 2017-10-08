@@ -13,8 +13,7 @@
 		"test": "NODE_ENV=test nodemon --exec mocha --recursive -R min",
 		"client": "npm run start --prefix client",
 		"dev": "concurrently \"npm run server\" \"npm run client\"",
-		"heroku-postbuild":
-			"NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
 	},
 	"author": "Lee Kar Sheng",
 	"license": "ISC",
@@ -33,6 +32,7 @@
 		"passport": "^0.4.0",
 		"passport-jwt": "^3.0.0",
 		"passport-local": "^1.0.0",
+		"stripe": "^5.1.1",
 		"supertest": "^3.0.0"
 	}
 }
