@@ -6,7 +6,6 @@ import {
 } from '../../actions/registrationActions';
 import _ from 'lodash';
 import RaisedButton from 'material-ui/RaisedButton';
-// import { participantFormCompleted } from '../../helper/';
 import Progress from '../Progress';
 import formatDate from '../../utils/formatDate';
 import getPostalCharges from '../../utils/getPostalCharges';
@@ -46,7 +45,6 @@ class Checkout extends Component {
 		const { selectedCategory, race } = this.props;
 		if (!selectedCategory)
 			return this.props.history.push(`/registration/participant/${race_id}`);
-		// if (!participantFormCompleted(participant)) return this.props.history.push(`/registration/participant/${race_id}`);
 		if (!race) return this.props.history.push(`/race/${race_id}`);
 
 		const { earlyBirdDeadline } = race;
@@ -114,7 +112,7 @@ class Checkout extends Component {
 	}
 
 	renderPostalCharges(race, participant) {
-		if (race.delivery.hasDeliveryOption && participant.wantsPostalService) {
+		if (race.hasDeliveryOption && participant.wantsPostalService) {
 			return getPostalCharges(
 				participant.postalAddress,
 				race.delivery.postalCharges,
