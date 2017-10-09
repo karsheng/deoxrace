@@ -3,7 +3,7 @@ import { fetchRegistration } from '../../actions/registrationActions';
 import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
 import Progress from '../Progress';
-import StripePayments from '../payments/StripePayments';
+import StripePayments from './StripePayments';
 
 const style = {
 	paper: {
@@ -16,7 +16,7 @@ const style = {
 	}
 };
 
-class Payment extends Component {
+class PaymentOptions extends Component {
 	componentWillMount() {
 		const { registration_id } = this.props.match.params;
 		this.props.fetchRegistration(registration_id, (err, reg) => {
@@ -58,4 +58,4 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps, { fetchRegistration })(Payment);
+export default connect(mapStateToProps, { fetchRegistration })(PaymentOptions);

@@ -32,14 +32,14 @@ class AuthDialog extends Component {
 					fullWidth={true}
 					style={style.signinBtn}
 					containerElement={<Link to="/signin" />}
-					onTouchTap={this.props.closeAuthDialog}
+					onClick={this.props.closeAuthDialog}
 				/>
 				<RaisedButton
 					secondary={true}
 					label="or sign up here"
 					fullWidth={true}
 					containerElement={<Link to="/signup" />}
-					onTouchTap={this.props.closeAuthDialog}
+					onClick={this.props.closeAuthDialog}
 				/>
 			</Dialog>
 		);

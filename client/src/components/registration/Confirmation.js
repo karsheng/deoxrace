@@ -29,7 +29,7 @@ class Confirmation extends Component {
 				this.props.history.push(`/registration/payment/${registration_id}`);
 				return;
 			}
-			this.props.openSnackbar('Event registered successfully!');
+			this.props.openSnackbar('Race registered successfully!');
 		});
 	}
 

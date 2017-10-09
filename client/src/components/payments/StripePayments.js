@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
-import { connect } from 'react-redux';
-import { handleStripeToken } from '../../actions/paymentActions';
 import RaisedButton from 'material-ui/RaisedButton';
+import axios from 'axios';
 
 class StripePayments extends Component {
-	handlePayment(token) {
-		const { registrationId } = this.props;
-		this.props.handleStripeToken(token, registrationId, () => {
+	async handlePayment(stripeToken) {
+		try {
+			const { registrationId } = this.props;
+			const token = localStorage.getItem('deotoken');
+
+			let config = { headers: { authorization: token } };
+
+			await axios.post(`/api/stripe/${registrationId}`, stripeToken, config);
+
 			this.props.history.push(`/registration/confirmation/${registrationId}`);
-		});
+		} catch (e) {
+			alert('Something went wrong. Please try again later.');
+			console.log(e);
+		}
 	}
 	render() {
 		const { totalBill } = this.props;
@@ -27,4 +35,4 @@ class StripePayments extends Component {
 	}
 }
 
-export default connect(null, { handleStripeToken })(StripePayments);
+export default StripePayments;

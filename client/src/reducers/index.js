@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
 import raceReducer from './raceReducer';
+import filteredRacesReducer from './filteredRacesReducer';
 import authReducer from './authReducer';
 import userReducer from './userReducer';
 import snackbarReducer from './snackbarReducer';
@@ -12,6 +13,7 @@ import categoryReducer from './categoryReducer';
 const rootReducer = combineReducers({
 	form,
 	races: raceReducer,
+	filteredRaces: filteredRacesReducer,
 	auth: authReducer,
 	snackbar: snackbarReducer,
 	user: userReducer,

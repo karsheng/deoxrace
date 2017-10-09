@@ -10,7 +10,9 @@ export const UPDATE_USER = 'update_user';
 
 export const FETCH_RACES = 'fetch_races';
 export const FETCH_RACE = 'fetch_race';
-export const FETCH_SPECIFIC_RACES = 'fetch_specific_races';
+
+export const FETCH_FILTERED_RACES = 'fetch_filtered_races';
+export const SET_FILTERED_RACES = 'set_filtered_races';
 
 export const DISPATCH_RACES_CATEGORIES = 'dispatch_races_categories';
 export const DISPATCH_RACE_CATEGORIES = 'dispatch_race_categories';
@@ -23,8 +25,6 @@ export const RESET_MEAL_SELECTION = 'reset_meal_selection';
 export const SET_TOTAL_PRICE = 'set_total_price';
 export const CREATE_REGISTRATION = 'create_registration';
 export const FETCH_REGISTRATION = 'fetch_registration';
-
-export const HANDLE_STRIPE_TOKEN = 'handle_stripe_token';
 
 export const UPDATE_PARTICIPANT = 'update_participant';
 

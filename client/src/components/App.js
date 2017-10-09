@@ -21,7 +21,7 @@ import ParticipantForm from './registration/ParticipantForm';
 import CategorySelection from './registration/CategorySelection';
 import MealSelection from './registration/MealSelection';
 import Checkout from './registration/Checkout';
-import Payment from './registration/Payment';
+import PaymentOptions from './payments/PaymentOptions';
 import Confirmation from './registration/Confirmation';
 
 const App = () => {
@@ -50,7 +50,7 @@ const App = () => {
 						/>
 						<Route
 							path="/registration/payment/:registration_id"
-							component={RequireAuth(Payment)}
+							component={RequireAuth(PaymentOptions)}
 						/>
 						<Route
 							path="/registration/confirmation/:registration_id"

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchSpecificRaces } from '../../actions/raceActions';
+import { fetchFilteredRaces } from '../../actions/filteredRacesActions';
 import RaceCard from './RaceCard';
 import RaceFilter from './RaceFilter';
 import _ from 'lodash';
@@ -75,7 +75,7 @@ class RaceBrowse extends Component {
 	}
 
 	componentDidMount() {
-		this.props.fetchSpecificRaces(this.state.type, e => {
+		this.props.fetchFilteredRaces(this.state.type, e => {
 			if (e) alert('Something went wrong');
 		});
 	}
@@ -131,8 +131,8 @@ const getDistance = categories => {
 const mapStateToProps = state => {
 	return {
 		races: state.races,
-		filteredRaces: state.races.filteredRaces
+		filteredRaces: state.filteredRaces
 	};
 };
 
-export default connect(mapStateToProps, { fetchSpecificRaces })(RaceBrowse);
+export default connect(mapStateToProps, { fetchFilteredRaces })(RaceBrowse);

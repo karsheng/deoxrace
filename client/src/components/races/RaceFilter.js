@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SelectField from 'material-ui/SelectField';
 import { connect } from 'react-redux';
-import { fetchSpecificRaces } from '../../actions/raceActions';
+import { fetchFilteredRaces } from '../../actions/filteredRacesActions';
 import MenuItem from 'material-ui/MenuItem';
 import { STATESNAME } from '../../utils/constants';
 
@@ -16,7 +16,7 @@ class RaceFilter extends Component {
 	handleTypeChange(e, i, val) {
 		let { type } = this.props.state;
 		type = val;
-		this.props.fetchSpecificRaces(type, err => {
+		this.props.fetchFilteredRaces(type, err => {
 			if (err) {
 				alert('Something went wrong');
 				return;
@@ -115,4 +115,4 @@ class RaceFilter extends Component {
 	}
 }
 
-export default connect(null, { fetchSpecificRaces })(RaceFilter);
+export default connect(null, { fetchFilteredRaces })(RaceFilter);

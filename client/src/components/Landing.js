@@ -10,16 +10,17 @@ class Landing extends Component {
 		this.props.fetchRaces();
 	}
 
-	renderRaceCards(races) {
+	renderRaceCards() {
+		const { races } = this.props;
+		if (!races) return <Progress />;
+
 		return _.map(races, race => {
 			return <RaceCard key={race._id} race={race} />;
 		});
 	}
 
 	render() {
-		const { races } = this.props;
-		if (!races) return <Progress />;
-		return <div>{this.renderRaceCards(races)}</div>;
+		return <div>{this.renderRaceCards()}</div>;
 	}
 }
 
